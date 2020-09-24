@@ -1,0 +1,7 @@
+name: ${project.name}
+version: ${project.version}
+main: me.lokka30.beddefender.BedDefender
+description: ${project.description}
+author: lokka30
+api-version: '1.13'
+website: 'https://www.spigotmc.org'
