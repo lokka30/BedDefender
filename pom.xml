@@ -6,7 +6,7 @@
 
     <groupId>me.lokka30</groupId>
     <artifactId>BedDefender</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>BedDefender</name>
     <description>A SpigotMC plugin which prevents players from sleeping in beds.</description>
