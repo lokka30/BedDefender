@@ -18,14 +18,14 @@ public class BedDefender extends JavaPlugin implements Listener {
         new Metrics(this, 8941);
 
         saveDefaultConfig();
-        if(!(new File(getDataFolder(), "license.txt").exists())) {
+        if (!(new File(getDataFolder(), "license.txt").exists())) {
             saveResource("license.txt", false);
         }
     }
 
     @EventHandler
     public void onBedEnter(final PlayerBedEnterEvent event) {
-        if(getConfig().getBoolean("enabled")) {
+        if (getConfig().getBoolean("enabled")) {
             //Both of the below do the same thing, just leaving both of them there anyways.
             event.setCancelled(true);
             event.setUseBed(Event.Result.DENY);
@@ -34,7 +34,7 @@ public class BedDefender extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBedLeave(final PlayerBedLeaveEvent event) {
-        if(getConfig().getBoolean("enabled")) {
+        if (getConfig().getBoolean("enabled")) {
             event.setSpawnLocation(false);
         }
     }
