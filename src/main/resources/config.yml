@@ -1,1 +1,13 @@
-enabled: true
+# Should the plugin prevent beds from being used?
+prevent-bed-usage: true
+
+# Prevent respawns from being set?
+prevent-respawn-set: true
+
+message:
+
+  # Should the message be sent?
+  send: true
+
+  # What should the message be? (You can use color codes).
+  text: '&b&lBedDefender: &7You aren''t allowed to sleep in beds.'

@@ -1,6 +1,7 @@
 package me.lokka30.beddefender;
 
 import org.bstats.bukkit.Metrics;
+import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,6 +10,7 @@ import org.bukkit.event.player.PlayerBedLeaveEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
+import java.util.Objects;
 
 public class BedDefender extends JavaPlugin implements Listener {
 
@@ -25,16 +27,20 @@ public class BedDefender extends JavaPlugin implements Listener {
 
     @EventHandler
     public void onBedEnter(final PlayerBedEnterEvent event) {
-        if (getConfig().getBoolean("enabled")) {
+        if (getConfig().getBoolean("prevent-bed-usage")) {
             //Both of the below do the same thing, just leaving both of them there anyways.
             event.setCancelled(true);
             event.setUseBed(Event.Result.DENY);
+
+            if (getConfig().getBoolean("message.send")) {
+                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(getConfig().getString("message.text"))));
+            }
         }
     }
 
     @EventHandler
     public void onBedLeave(final PlayerBedLeaveEvent event) {
-        if (getConfig().getBoolean("enabled")) {
+        if (getConfig().getBoolean("prevent-respawn-set")) {
             event.setSpawnLocation(false);
         }
     }
