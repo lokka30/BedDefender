@@ -1,47 +1,45 @@
+/*
+ * Copyright (c) 2020-2022  lokka30.
+ * This file is/was present in BedDefender's source code.
+ * Learn more about BedDefender and its licensing at:
+ * <https://github.com/lokka30/BedDefender>
+ */
 package me.lokka30.beddefender;
 
+import me.lokka30.beddefender.listener.BedListeners;
 import org.bstats.bukkit.Metrics;
-import org.bukkit.ChatColor;
-import org.bukkit.event.Event;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerBedEnterEvent;
-import org.bukkit.event.player.PlayerBedLeaveEvent;
+import org.bstats.charts.SimplePie;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.io.File;
-import java.util.Objects;
-
-public class BedDefender extends JavaPlugin implements Listener {
+public class BedDefender extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        getServer().getPluginManager().registerEvents(this, this);
-        new Metrics(this, 8941);
+        loadFiles();
+        registerListeners();
+        loadMetrics();
+    }
 
+    private void loadFiles() {
+        getLogger().info("Loading files...");
         saveDefaultConfig();
-        if (!(new File(getDataFolder(), "license.txt").exists())) {
-            saveResource("license.txt", false);
-        }
     }
 
-    @EventHandler
-    public void onBedEnter(final PlayerBedEnterEvent event) {
-        if (getConfig().getBoolean("prevent-bed-usage")) {
-            //Both of the below do the same thing, just leaving both of them there anyways.
-            event.setCancelled(true);
-            event.setUseBed(Event.Result.DENY);
-
-            if (getConfig().getBoolean("message.send")) {
-                event.getPlayer().sendMessage(ChatColor.translateAlternateColorCodes('&', Objects.requireNonNull(getConfig().getString("message.text"))));
-            }
-        }
+    private void registerListeners() {
+        getLogger().info("Registering listeners...");
+        getServer().getPluginManager().registerEvents(new BedListeners(this), this);
     }
 
-    @EventHandler
-    public void onBedLeave(final PlayerBedLeaveEvent event) {
-        if (getConfig().getBoolean("prevent-respawn-set")) {
-            event.setSpawnLocation(false);
-        }
+    private void loadMetrics() {
+        final Metrics metrics = new Metrics(this, 8941);
+        metrics.addCustomChart(new SimplePie("uses_bed_usage_prevention", () ->
+            Boolean.toString(getConfig().getBoolean("prevent-bed-usage", true))
+        ));
+        metrics.addCustomChart(new SimplePie("uses_respawn_set_prevention", () ->
+            Boolean.toString(getConfig().getBoolean("prevent-respawn-set", false))
+        ));
+        metrics.addCustomChart(new SimplePie("uses_send_message", () ->
+            Boolean.toString(getConfig().getBoolean("message.send", true))
+        ));
     }
 }

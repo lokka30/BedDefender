@@ -1,13 +1,17 @@
-# Should the plugin prevent beds from being used?
+# Should the plugin prevent beds from being slept in?
 prevent-bed-usage: true
 
-# Prevent respawns from being set?
-prevent-respawn-set: true
+# Should the plugin prevent users from adjusting their
+# respawn point using beds?
+prevent-respawn-set: false
 
+# This section allows the configuration of an
+# error message sent to the user if 'prevent-bed-usage'
+# is enabled.
 message:
 
   # Should the message be sent?
   send: true
 
-  # What should the message be? (You can use color codes).
-  text: '&b&lBedDefender: &7You aren''t allowed to sleep in beds.'
+  # What should the message be?
+  text: '&b&lBedDefender: &7Sleeping in beds is disabled on this server.'

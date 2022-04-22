@@ -12,22 +12,23 @@
 BedDefender is a tiny plugin that disables sleeping, and/or respawn point adjustment
 (depending on however you wish to configure it). :)
 
-I programmed this to add an extra challenge to Survival servers.
-Beds allow you to completely skip night time, only at the cost of
-3 planks and 3 wool. Forcing players to survive the night makes the game
-more difficult, and therefore, less mundane.
+I programmed this to add an extra challenge to Survival servers. Beds allow you to completely skip
+night time, only at the cost of 3 planks and 3 wool. Forcing players to survive the night makes the
+game more difficult, and therefore, less mundane.
 
 This plugin allows you to:
 
-- Prevents players from entering beds, and/or,
-- Prevent the re-spawn point from being set at beds.
+- Prevents players from entering beds (default), and/or,
+- Prevent the re-spawn point from being set at beds (not default).
 
+BedDefender also sends a toggleable, customizable message to players who are prevented from sleeping
+in a bed (if enabled, of course).
 
-If you want to make Survival even harder, you should check out my other
-plugin as well,
+If you want to make Survival even harder, you should check out my other plugin as well,
 [LevelledMobs](https://www.spigotmc.org/resources/levelledmobs.74304/)!
 
 ## License
+
     Copyright (C) 2020-2022 lokka30
     
     This program is free software: you can redistribute it and/or modify
