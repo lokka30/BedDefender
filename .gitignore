@@ -1,2 +1,10 @@
-/target/
-/.idea/workspace.xml
+# IntelliJ IDEA
+.idea/
+BedDefender.iml
+
+# Maven
+target/
+
+# macOS
+.DS_Store
+._.git
